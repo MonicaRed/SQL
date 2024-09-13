@@ -62,38 +62,33 @@ VALUES
 
 # Assign all the companies in the Healthcare, Technology and Finance industry as "best place to work", "acceptable", or "abysmal" based on employee tenure. 
 SELECT
-company_name,
+    company_name,
 CASE 
   WHEN avg_employee_tenure >= 6 THEN 'best place to work'
   WHEN avg_employee_tenure >= 3 THEN 'acceptable'
   ELSE 'abysmal'
 END as 'best place to work'
 FROM fortune_companies
-WHERE industry IN ('Healthcare', 'Technology', 'Finance')
-;
+WHERE industry IN ('Healthcare', 'Technology', 'Finance');
 
 # Which industries have an average revenue of at least $175 Billion, and what are their avg revenues?
 SELECT industry, ROUND(AVG(revenue), 1) as avg_revenue_billions
 FROM fortune_companies
 GROUP BY industry
-HAVING avg_revenue_billions >= 175
-;
+HAVING avg_revenue_billions >= 175;
 
 # Which companies have healthcare benefits *and* at least 10 maternity leave weeks?
 SELECT company_name
 FROM fortune_companies
 WHERE maternity_leave_weeks > 10
-AND healthcare_benefits = 1
-;
+AND healthcare_benefits = 1;
 
 # Which company in the Healthcare industry has the max revenue, and what's their revenue? 
 SELECT company_name, max(revenue)
 FROM fortune_companies
-WHERE industry = 'Healthcare'
-;
+WHERE industry = 'Healthcare';
 
 # Which company in the Healthcare industry has the min revenue, and what's their revenue? 
 SELECT company_name, min(revenue)
 FROM fortune_companies
-WHERE industry = 'Healthcare'
-;
+WHERE industry = 'Healthcare';
